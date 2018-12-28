@@ -42,6 +42,43 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="vue.min.js"></script>
+    <script>
+    new Vue({
+        el: '#example-1',
+        data: {
+            items: []
+        },
+        created (){
+            this.httpGetAsync("https://api.github.com/users/tahamian/repos", function(x){
+        var projs = JSON.parse(x).map(function(proj){
+            return {
+                    name : proj.name, 
+                    url: proj.url,
+                    language: proj.language,
+                    description : proj.description
+                   }
+        })
+        this.items = projs
+        console.log(this.items)
+    })
+        },
+        methods : {
+            httpGetAsync(theUrl, callback){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); 
+        xmlHttp.send(null);
+    }
+    
+        }
+    })
+    
+    
+    </script>
 </head>
 <body class="apply-fonts" data-spy="scroll" data-target="#pt-navbar-collapse">
     <div id="home">
@@ -65,7 +102,7 @@
                         <li><a id="navbar-link-about" href="#about" class="pt-track-event"
                             data-event-category="link-click" data-event-action="click" data-event-label="#about">About</a></li>
                         <li><a id="navbar-link-features" href="#features" class="pt-track-event"
-                            data-event-category="link-click" data-event-action="click" data-event-label="#features">Features</a></li>
+                            data-event-category="link-click" data-event-action="click" data-event-label="#features">Projects</a></li>
                         <li><a id="navbar-link-mentions" href="#mentions" class="pt-track-event"
                             data-event-category="link-click" data-event-action="click" data-event-label="#mentions">Mentions</a></li>
                         <li><a id="navbar-link-comments" href="#comments" class="pt-track-event"
@@ -91,13 +128,13 @@
             <div class="page-header">
                 <h2><i class="fa fa-map-o"></i> About</h2>
             </div>
-            <p class="text-indent-md"><strong>Pomodoro Timer Lite</strong> is a simple and clean online productivity timer app for your desktop and smartphone browsers. It's inspired by the popular Pomodoro Technique time management method, that helps you stay focused by timing your daily tasks and giving you much needed breaks in between to boost your productivity.</p>
+            <p class="text-indent-md">Hey</p>
 
             <h3><i class="fa fa-bolt"></i> What is the Pomodoro Technique?</h3>
 
             <div class="row">
                 <div class="col-md-12">
-                    <p class="text-indent-md">The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.The technique uses a timer to break down work into intervals traditionally 25 minutes in length, separated by short breaks. These intervals are known as "pomodoros", the plural in English of the Italian word pomodoro meaning "tomato".The method is based on the idea that frequent breaks can improve mental agility.(The timer length can vary as per a individuals choice.)</p>
+                    <p class="text-indent-md"> I am a Gord bag</p>
 
                     <h3><i class="fa fa-paw"></i> Getting started</h3>
                     <p>There are five basic steps to implementing the technique:
@@ -123,7 +160,7 @@
                 role="button"><i class="fa fa-angle-double-up"></i> Go back to app</a>
             </div>
             <div class="page-header">
-                <h2><i class="fa fa-list-ul"></i> Features</h2>
+                <h2><i class="fa fa-list-ul"></i> Projects</h2>
             </div>
             <ul class="media-list">
 
@@ -133,8 +170,15 @@
                   </div>
                   <div class="media-body">
                     <div class="media-heading"><h4>Github Projects</h4></div>
-                    <p>You can fork and contribute to the project. You just need a <strong>github.com</strong> account.</p>
-                    sad
+                      <li>
+                          List of Projects
+                      </li>
+                      <ul id="example-1">
+                      <li v-for="item in items">
+                        {{ item }}
+                      </li>
+                    </ul>
+                   
                   </div>
                 </li>
             </ul>
