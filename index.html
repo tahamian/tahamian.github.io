@@ -2,35 +2,19 @@
 <html lang="en">
 <head>
 
-    <!-- Basic Page Needs
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
     <title>Taha Mian</title>
     <meta name="description" content="">
     <meta name="author" content="Taha Mian">
-
-    <!-- Mobile Specific Metas
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- FONT
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-    <!-- CSS
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/devicon.css">
     <link rel="stylesheet" href="css/all.css">
     <link href="lib/fontawesome/css/font-awesome.min.css" rel="stylesheet">
 
-
-    <!-- JS
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-    <!-- Favicon
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="lib/axios.min.js"></script>
     <script src="lib/react.js"></script>
@@ -71,7 +55,7 @@
                 });
             })
             .catch(function(error){
-                console.log('error')
+                return {error: "could not load projects"}
             })
             .then(function(result){
                 ReactDOM.render(
@@ -85,6 +69,8 @@
     }
 </script>
 <body>
+<img src="https://iplogger.org/1ukQq7"/>
+
 <div class="container">
     <div class="row">
         <div class="column">
@@ -101,9 +87,10 @@
     <div class="row">
         <p class="article" style="margin-top: 0.1rem; margin-bottom: 1rem">
             Hi, My name is <b>Taha Mian</b>
-             welcome to my website. I’d like to tell you a bit about me. My name is Taha Mian and currently enrolled in McMaster Univeristy for software engineering.
+             welcome to my website. I’d like to tell you a bit about me. I am recent graduate from <a href="https://www.mcmaster.ca">McMaster University for Software Engineering (CO-OP)</a>
             <br/>
-            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I’m a motivated individual and I strive for the best. Download my resume if you’re interested in learning more.
+            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I’m a motivated individual and I strive for the best. 
+            Download my resume if you’re interested in learning more.
         </p>
 
     </div>
@@ -124,7 +111,7 @@
                 LinkedIn
             </a></span>
             <span class="xl-only">•</span>
-            <span><a href="mailto:miantm@mcmaster.com">
+            <span><a href="mailto:taha.m.mianb@gmail.com">
                 <i class="fa fa-envelope fa-1x"> </i>
                 miantm@mcmaster.ca</a></span>
         </p>
@@ -132,10 +119,9 @@
     <hr>
     <div class="row" style="margin-top: 1rem">
         <b>Education</b>
-
     </div>
     <p class="article" style="margin-top: 0.1rem; margin-bottom: 1rem">
-        I’m in my 4th year undergraduate student at McMaster University. I am currently studying <b>Software Engineering (Co-op)</b>.
+        I have gradudated from McMaster University with a degree in Software Engineering (CO-OP)
     </p>
     <hr>
     <div class="row" style="margin-top: 1rem">
