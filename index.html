@@ -27,7 +27,6 @@
         class Projects extends React.Component
         {
             render() {
-                console.log(this.props.projects);
                 var item = this.props.projects.map(function(elem){
                         return React.createElement('p', {key : elem['name'].toString(), 'className': 'article'},
                                React.createElement('a', {'href' : elem['url'].toString()},
@@ -69,8 +68,6 @@
     }
 </script>
 <body>
-<img src="https://iplogger.org/1ukQq7"/>
-
 <div class="container">
     <div class="row">
         <div class="column">
@@ -89,7 +86,7 @@
             Hi, My name is <b>Taha Mian</b>
              welcome to my website. I’d like to tell you a bit about me. I am recent graduate from <a href="https://www.mcmaster.ca">McMaster University for Software Engineering (CO-OP)</a>
             <br/>
-            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I’m a motivated individual and I strive for the best. 
+            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I’m a motivated individual and I strive for the best.
             Download my resume if you’re interested in learning more.
         </p>
 
@@ -113,7 +110,7 @@
             <span class="xl-only">•</span>
             <span><a href="mailto:taha.m.mianb@gmail.com">
                 <i class="fa fa-envelope fa-1x"> </i>
-                miantm@mcmaster.ca</a></span>
+                taha.m.mian@gmail.com</a></span>
         </p>
     </div>
     <hr>
