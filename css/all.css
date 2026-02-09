@@ -1254,3 +1254,91 @@ body {
 hr {
     margin: 0;
 }
+
+/* Desktop scale-up */
+@media only screen and (min-width: 875px) {
+    html {
+        font-size: 80%;
+    }
+
+    .site-container {
+        max-width: 900px;
+    }
+
+    .site-name {
+        font-size: 5rem;
+    }
+
+    .site-title {
+        font-size: 2.2rem;
+    }
+
+    .social-link {
+        padding: 1rem 1.8rem;
+        font-size: 1.7rem;
+        border-radius: 10px;
+    }
+
+    .social-link i {
+        font-size: 2rem;
+    }
+
+    .section {
+        margin: 2.5rem 0;
+    }
+
+    .section-heading {
+        font-size: 1.9rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .article {
+        font-size: 1.7rem;
+        line-height: 1.8;
+    }
+
+    .education-item {
+        padding: 2rem 2.2rem;
+    }
+
+    .education-school {
+        font-size: 1.9rem;
+    }
+
+    .education-degree {
+        font-size: 1.6rem;
+    }
+
+    .projects-grid {
+        gap: 1.6rem;
+    }
+
+    .project-card {
+        padding: 2.2rem;
+    }
+
+    .project-name {
+        font-size: 1.8rem;
+    }
+
+    .project-name i {
+        font-size: 1.3rem;
+    }
+
+    .project-lang {
+        font-size: 1.3rem;
+    }
+
+    .project-desc {
+        font-size: 1.5rem;
+    }
+
+    .spinner {
+        width: 52px;
+        height: 52px;
+    }
+
+    .spinner-text {
+        font-size: 1.6rem;
+    }
+}
