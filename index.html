@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <title>Taha Mian</title>
-    <meta name="description" content="">
+    <meta name="description" content="Taha Mian - Software Engineer">
     <meta name="author" content="Taha Mian">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,19 +27,23 @@
         class Projects extends React.Component
         {
             render() {
-                var item = this.props.projects.map(function(elem){
-                        return React.createElement('p', {key : elem['name'].toString(), 'className': 'article'},
-                               React.createElement('a', {'href' : elem['url'].toString()},
-                                   React.createElement('b' , null , capitalizeFirstLetter(elem['name'].toString() ),
-                                   React.createElement('i', {'className' : 'fa fa-fw fa-external-link' }, '')
-                                   )),
-                            React.createElement('code', null, elem['language']),
-                            React.createElement('br', null),
-                                    React.createElement('span', null, elem['description'])
-
-                        )
+                var items = this.props.projects.map(function(elem){
+                    return React.createElement('div', {key: elem['name'].toString(), className: 'project-card'},
+                        React.createElement('div', {className: 'project-header'},
+                            React.createElement('a', {href: elem['url'].toString(), className: 'project-name'},
+                                React.createElement('b', null, capitalizeFirstLetter(elem['name'].toString())),
+                                React.createElement('i', {className: 'fa fa-fw fa-external-link'}, '')
+                            ),
+                            elem['language']
+                                ? React.createElement('code', {className: 'project-lang'}, elem['language'])
+                                : null
+                        ),
+                        elem['description']
+                            ? React.createElement('p', {className: 'project-desc'}, elem['description'])
+                            : null
+                    );
                 });
-                return React.createElement('div', null, item )
+                return React.createElement('div', {className: 'projects-grid'}, items);
             }
         }
         axios.get('https://api.github.com/users/tahamian/repos')
@@ -54,13 +58,16 @@
                 });
             })
             .catch(function(error){
-                return {error: "could not load projects"}
+                document.getElementById('root').innerHTML = '<p class="error-msg">Could not load projects. Please try again later.</p>';
+                return null;
             })
             .then(function(result){
-                ReactDOM.render(
-                    React.createElement(Projects, { projects: result }),
-                    document.getElementById('root')
-                )
+                if (result) {
+                    ReactDOM.render(
+                        React.createElement(Projects, { projects: result }),
+                        document.getElementById('root')
+                    );
+                }
             });
     };
     function capitalizeFirstLetter(string) {
@@ -68,71 +75,69 @@
     }
 </script>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="column">
-            <div class="row">
-                <h5>Taha <b>Mian</b></h5>
-            </div>
-            <h6><b>Software Engineer</b></h6>
+<div class="container site-container">
+
+    <header class="site-header">
+        <h5 class="site-name">Taha <b>Mian</b></h5>
+        <h6 class="site-title"><b>Software Engineer</b></h6>
+    </header>
+
+    <nav class="social-links">
+        <a href="https://github.com/tahamian" class="social-link">
+            <i class="fa fa-github"></i> GitHub
+        </a>
+        <a href="pdf/resume.pdf" class="social-link">
+            <i class="fa fa-download"></i> Resume
+        </a>
+        <a href="https://ca.linkedin.com/in/taha-mian-51338911a" class="social-link">
+            <i class="fa fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="mailto:taha.m.mianb@gmail.com" class="social-link">
+            <i class="fa fa-envelope"></i> Email
+        </a>
+    </nav>
+
+    <hr>
+
+    <section class="section">
+        <h6 class="section-heading">About Me</h6>
+        <p class="article">
+            Hi, my name is <b>Taha Mian</b> &mdash; welcome to my website.
+            I am a recent graduate from <a href="https://www.mcmaster.ca">McMaster University</a> with a degree in Software Engineering (CO-OP).
+            <br/><br/>
+            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I'm a motivated individual and I strive for the best.
+            Download my <a href="pdf/resume.pdf">resume</a> if you're interested in learning more.
+        </p>
+    </section>
+
+    <hr>
+
+    <section class="section">
+        <h6 class="section-heading">Education</h6>
+        <div class="education-item">
+            <div class="education-school"><i class="fa fa-graduation-cap"></i> McMaster University</div>
+            <div class="education-degree">Bachelor of Software Engineering (CO-OP)</div>
         </div>
-    </div>
-    <hr>
-    <div class="row" style="margin-top: 1rem">
-        <b>About Me</b>
-    </div>
-    <div class="row">
-        <p class="article" style="margin-top: 0.1rem; margin-bottom: 1rem">
-            Hi, My name is <b>Taha Mian</b>
-             welcome to my website. I’d like to tell you a bit about me. I am recent graduate from <a href="https://www.mcmaster.ca">McMaster University for Software Engineering (CO-OP)</a>
-            <br/>
-            In my spare time, I love playing sports, my favourite being basketball. I enjoy challenging myself and I often complete coding challenges. I’m a motivated individual and I strive for the best.
-            Download my resume if you’re interested in learning more.
-        </p>
+    </section>
 
-    </div>
-    <div class="row">
-        <p class="col gap-1 xl-row xl-gap-2 article top" style="margin-bottom: 1rem">
-            <span><a href="https://github.com/tahamian">
-            <i class="fa fa-github fa-1x"> </i>
-                GitHub
-            </a></span>
-            <span class="xl-only">•</span>
-            <span><a href="pdf/resume.pdf">
-                <i class="fa fa-download fa-1x"> </i>
-                Resume
-            </a></span>
-            <span class="xl-only">•</span>
-            <span><a href="https://ca.linkedin.com/in/taha-mian-51338911a">
-            <i class="fa fa-linkedin fa-1x"> </i>
-                LinkedIn
-            </a></span>
-            <span class="xl-only">•</span>
-            <span><a href="mailto:taha.m.mianb@gmail.com">
-                <i class="fa fa-envelope fa-1x"> </i>
-                taha.m.mian@gmail.com</a></span>
-        </p>
-    </div>
-    <hr>
-    <div class="row" style="margin-top: 1rem">
-        <b>Education</b>
-    </div>
-    <p class="article" style="margin-top: 0.1rem; margin-bottom: 1rem">
-        I have gradudated from McMaster University with a degree in Software Engineering (CO-OP)
-    </p>
-    <hr>
-    <div class="row" style="margin-top: 1rem">
-        <b>Projects On Github</b>
-
-    </div>
-    <div id="root"></div>
     <hr>
 
-    <div class="row" style="margin-top: 1rem; margin-left: auto; margin-right: auto;width: 10em">
+    <section class="section">
+        <h6 class="section-heading">Projects on GitHub</h6>
+        <div id="root">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <p class="spinner-text">Loading projects...</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <footer class="site-footer">
         <a class="github-button" href="https://github.com/tahamian/personal-site/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork tahamian/personal-site on GitHub">Fork Me on Github</a>
-        <span class="xl-only" style="padding-right: 10px; padding-left: 10px;">•</span>
         <a class="github-button" href="https://github.com/tahamian/personal-site/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue tahamian/personal-site on GitHub">Submit an Issue</a>
-    </div>
+    </footer>
 
 </div>
 
