@@ -28,9 +28,9 @@
         {
             render() {
                 var items = this.props.projects.map(function(elem){
-                    return React.createElement('div', {key: elem['name'].toString(), className: 'project-card'},
+                    return React.createElement('a', {key: elem['name'].toString(), className: 'project-card', href: elem['url'].toString()},
                         React.createElement('div', {className: 'project-header'},
-                            React.createElement('a', {href: elem['url'].toString(), className: 'project-name'},
+                            React.createElement('span', {className: 'project-name'},
                                 React.createElement('b', null, capitalizeFirstLetter(elem['name'].toString())),
                                 React.createElement('i', {className: 'fa fa-fw fa-external-link'}, '')
                             ),
@@ -40,7 +40,11 @@
                         ),
                         elem['description']
                             ? React.createElement('p', {className: 'project-desc'}, elem['description'])
-                            : null
+                            : null,
+                        React.createElement('p', {className: 'project-date'},
+                            React.createElement('i', {className: 'fa fa-clock-o'}, ''),
+                            ' Updated ' + elem['updated_at']
+                        )
                     );
                 });
                 return React.createElement('div', {className: 'projects-grid'}, items);
@@ -57,7 +61,8 @@
                             name : proj.name,
                             url: proj.html_url,
                             language: proj.language,
-                            description : proj.description
+                            description : proj.description,
+                            updated_at: new Date(proj.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
                         }
                     });
             })
