@@ -48,14 +48,18 @@
         }
         axios.get('https://api.github.com/users/tahamian/repos')
             .then(function (response){
-                return response.data.map(function(proj) {
-                    return {
-                        name : proj.name,
-                        url: proj.html_url,
-                        language: proj.language,
-                        description : proj.description
-                    }
-                });
+                return response.data
+                    .sort(function(a, b) {
+                        return new Date(b.updated_at) - new Date(a.updated_at);
+                    })
+                    .map(function(proj) {
+                        return {
+                            name : proj.name,
+                            url: proj.html_url,
+                            language: proj.language,
+                            description : proj.description
+                        }
+                    });
             })
             .catch(function(error){
                 document.getElementById('root').innerHTML = '<p class="error-msg">Could not load projects. Please try again later.</p>';
